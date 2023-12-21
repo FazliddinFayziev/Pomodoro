@@ -1,4 +1,4 @@
-### React Native Pomodoro App
+### React Native Pomodoro App 🌱
 #### I have done this project for Harvard CS50 final project. It is amazing. I have discovered so many things.
 #### It plays audio when time is up and gives breaks. You can change background colors and so on.
 
