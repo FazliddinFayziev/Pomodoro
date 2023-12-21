@@ -2,24 +2,13 @@
   "expo": {
     "name": "pomodoro",
     "slug": "pomodoro",
+    "description": "This is a Pomodoro App that helps you to detect your time!",
     "version": "1.0.0",
     "orientation": "portrait",
-    "plugins": [
-      [
-        "expo-notifications",
-        {
-          "icon": "./app/assets/icon.png",
-          "color": "#082849",
-          "sounds": [
-            "./app/assets/sound.mp3"
-          ]
-        }
-      ]
-    ],
-    "icon": "./app/assets/icon.png",
+    "icon": "./app/assets/pomodoro.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./app/assets/splash.png",
+      "image": "./app/assets/pomodoro.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -30,8 +19,6 @@
       "supportsTablet": true
     },
     "android": {
-      "useNextNotificationsApi": true,
-      "permissions": ["NOTIFICATIONS", "SYSTEM_ALERT_WINDOW", "WAKE_LOCK"],
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -39,6 +26,17 @@
     },
     "web": {
       "favicon": "./app/assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "aeb0485e-42ce-4cf9-8d67-3bd1e39ea652"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/aeb0485e-42ce-4cf9-8d67-3bd1e39ea652"
     }
   }
 }

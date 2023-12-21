@@ -31,9 +31,9 @@ export default function StartPage() {
   
   // High necessity
 
-  const time = 25
-  const short = 5
-  const long = 10
+  const time = 1500
+  const short = 300
+  const long = 600
 
   const [current, setCurrent] = useState(time);
   const [timerDuration, setTimerDuration] = useState(time);
@@ -54,7 +54,6 @@ export default function StartPage() {
   // Timer Logic
 
   useEffect(() => {
-    console.log(step)
     const newStep = step + 1;
     if(change) {
       setStep(newStep);
