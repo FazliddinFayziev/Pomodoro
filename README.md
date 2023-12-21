@@ -7,6 +7,10 @@
 exp://u.expo.dev/update/193fdbbe-fd37-4fdb-a762-65297e520696
 ```
 
+#### Or you can use QR code to scan and visit:
+<img width="342" alt="image" src="https://github.com/FazliddinFayziev/Pomodoro/assets/119391181/4be4cbd4-02b6-4a09-97bd-9383dade4244">
+
+
 Demo images:
 
 ![image](https://github.com/FazliddinFayziev/Pomodoro/assets/119391181/d1c8ef8e-ad55-47d8-be5a-38774382a1fc)
