@@ -1,8 +1,11 @@
 ### React Native Pomodoro App
-I have done this project for Harvard CS50 final project. It is amazing. I have discovered so many things.
-It plays audio when time is up and gives breaks. You can change background colors and so on.
-Demo Link:
+#### I have done this project for Harvard CS50 final project. It is amazing. I have discovered so many things.
+#### It plays audio when time is up and gives breaks. You can change background colors and so on.
+
+#### Demo Link:
+```
 exp://u.expo.dev/update/193fdbbe-fd37-4fdb-a762-65297e520696
+```
 
 Demo images:
 
