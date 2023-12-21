@@ -4,6 +4,18 @@
     "slug": "pomodoro",
     "version": "1.0.0",
     "orientation": "portrait",
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./app/assets/icon.png",
+          "color": "#082849",
+          "sounds": [
+            "./app/assets/sound.mp3"
+          ]
+        }
+      ]
+    ],
     "icon": "./app/assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -18,6 +30,8 @@
       "supportsTablet": true
     },
     "android": {
+      "useNextNotificationsApi": true,
+      "permissions": ["NOTIFICATIONS", "SYSTEM_ALERT_WINDOW", "WAKE_LOCK"],
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"

@@ -3,7 +3,7 @@ import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
 
-export default function Timer({ bg, step, value, timerDuration, pause, handlePause }) {
+export default function TimerContainer({ setChange, setRemainingTimeState, bg, step, value, timerDuration, pause, handlePause }) {
   return (
     <View>
       <ImageBackground
@@ -20,7 +20,12 @@ export default function Timer({ bg, step, value, timerDuration, pause, handlePau
                 duration={timerDuration}
                 colors={['#FFFF']}
                 trailColor={bg}
-                isSmoothColorTransition={true}
+                onUpdate={(remainingTime) => {
+                  setRemainingTimeState(remainingTime);
+                }}
+                onComplete={() => {
+                  setChange((prev) => prev + 1);
+                }}
               >
                 {({ remainingTime }) => (
                   <View style={styles.pause}>

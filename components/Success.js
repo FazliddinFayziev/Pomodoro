@@ -5,9 +5,9 @@ import React from 'react'
 export default function Success({ bg, setNav, setSuccess }) {
 
     const handleHome = () => {
-        setNav(true)
-        setSuccess(false)
-    }
+        setNav(true);
+        setSuccess(false);
+    };
     
     return (
       <View style={[styles.container, {backgroundColor: bg}]}>

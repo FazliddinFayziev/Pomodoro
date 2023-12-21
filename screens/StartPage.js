@@ -1,128 +1,127 @@
+// Global Imports
+
 import { Audio } from 'expo-av';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import * as BackgroundFetch from 'expo-background-fetch';
-import * as TaskManager from 'expo-task-manager';
 
-// Local imports
+// Local Imports
 
 import Count from '../components/Count';
-import Timer from '../components/Timer';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import Success from '../components/Success';
-
+import TimerContainer from '../components/TimerContainer';
 
 export default function StartPage() {
+
+  // Low necessity
+
+  const [bg, setBg] = useState('');
+  const [key, setKey] = useState(0);
+  const [step, setStep] = useState(1);
+  const [nav, setNav] = useState(true);
+  const [sound, setSound] = useState();
+  const [change, setChange] = useState(0);
+  const [start, setStart] = useState(true);
+  const [pause, setPause] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [message, setMessage] = useState('Good luck');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  
+  // High necessity
 
   const time = 25
   const short = 5
   const long = 10
-  const [bg, setBg] = useState('');
-  const [key, setKey] = useState(0);
-  const [step, setStep] = useState(0);
-  const [sound, setSound] = useState();
-  const [nav, setNav] = useState(true);
-  const [start, setStart] = useState(true);
-  const [pause, setPause] = useState(false);
+
   const [current, setCurrent] = useState(time);
-  const [success, setSuccess] = useState(false);
-  const [message, setMessage] = useState('Good luck')
   const [timerDuration, setTimerDuration] = useState(time);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [remainingTime, setRemainingTime] = useState(timerDuration);
+  const [remainingTimeState, setRemainingTimeState] = useState(25);
 
-
-  // BgColor and AsyncStorage (LocalStorage)
-
-  const getData = async () => {
-    try {
-      const value = await AsyncStorage.getItem('bg-color');
-      if (value !== null) {
-        setBg(value)
-      } else {
-        setBg('#FF5452')
-      }
-    } catch (err) {
-      setBg('#FF5452')
-    }
-  };
+  // Background Color LocalStorage
 
   useEffect(() => {
+    const getData = async () => {
+      try { const value = await AsyncStorage.getItem('bg-color');
+        if (value !== null) { setBg(value) } 
+        else { setBg('#FF5452') }
+      } catch (err) { setBg('#FF5452') }
+    };
     getData()
   }, [])
 
-  // Timer
-
-  useEffect(() => {
-    let interval;
-
-    if (pause && remainingTime > 0) {
-      interval = setInterval(() => {
-        setRemainingTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
-      }, 950);
-    } else if (remainingTime === 0) {
-      setStep(step + 1)
-      playSound()
-
-      if (step === 6) {
-        setStep(0)
-        setStart(true)
-        setPause(false)
-        setSuccess(true)
-        setMessage('DONE')
-        setTimerDuration(time)
-        setRemainingTime(time)
-        setKey(prevKey => prevKey + 1)
-      } else if (step === 4) {
-        setCurrent(long)
-        setRemainingTime(long)
-        setTimerDuration(long)
-        setKey(prevKey => prevKey + 1)
-        setMessage('Time to long break')
-      } else if (step % 2 !== 0) {
-        setCurrent(time)
-        setRemainingTime(time)
-        setTimerDuration(time)
-        setMessage('Time to work')
-        setKey(prevKey => prevKey + 1)
-      } else {
-        setCurrent(short)
-        setRemainingTime(short)
-        setTimerDuration(short)
-        setKey(prevKey => prevKey + 1)
-        setMessage('Time to short break')
-      }
-    }
-
-    return () => clearInterval(interval);
-  }, [pause, remainingTime, step]);
-
   // Timer Logic
 
+  useEffect(() => {
+    console.log(step)
+    const newStep = step + 1;
+    if(change) {
+      setStep(newStep);
+      playSound();
+    }
+
+    if (newStep < 9 && remainingTimeState === 0) {
+      if (newStep === 8) {
+        setStep(1);
+        setStart(true);
+        setPause(false);
+        setCurrent(time);
+        setSuccess(true);
+        setMessage('Good luck');
+        setTimerDuration(time);
+        setKey((prevKey) => prevKey + 1);
+      } else if (newStep === 6) {
+        setCurrent(long);
+        setTimerDuration(long);
+        setKey((prevKey) => prevKey + 1);
+        setMessage('Time for a long break');
+      } else if (newStep % 2 !== 0) {
+        setCurrent(time);
+        setTimerDuration(time);
+        setMessage('Time to work');
+        setKey((prevKey) => prevKey + 1);
+      } else if ((newStep % 2 === 0) && (newStep < 7)){
+        setCurrent(short);
+        setTimerDuration(short);
+        setKey((prevKey) => prevKey + 1);
+        setMessage('Time for a short break');
+      } else {
+        setStep(1);
+        setChange(0);
+        setCurrent(time);
+        setTimerDuration(time);
+      }
+    }
+  }, [change])
+
+  // Timer Pause
+
   const handlePause = () => {
-    setStart(false)
-    setNav(!nav)
-    setPause((prevPause) => !prevPause);
+    setNav(!nav);
+    setStart(false);
+    setPause(!pause);
   };
+
+  // Timer Start
 
   const handleStart = () => {
-    setNav(false)
-    setStart(false)
-    setPause((prevPause) => !prevPause);
-    setMessage('Time to work')
+    setNav(false);
+    setStart(false);
+    setPause(!pause);
+    setMessage('Time to work');
   }
 
+  // Timer Reset
+
   const handleStartOver = () => {
-    setNav(true)
-    setStart(true)
-    setRemainingTime(current)
-    setTimerDuration(current)
-    setKey(prevKey => prevKey + 1)
+    setNav(true);
+    setStart(true);
+    setTimerDuration(current);
+    setKey(prevKey => prevKey + 1);
   };
 
-  // Play sound Logic
+  // Play Sound
 
   async function playSound() {
     const { sound } = await Audio.Sound.createAsync(require('../app/assets/sound.mp3'));
@@ -142,14 +141,32 @@ export default function StartPage() {
     <View style={[styles.container, { backgroundColor: bg }]}>
       {!success ? (
         <>
+
+          {/* Navbar */}
+
           <Navbar nav={nav} setIsSidebarOpen={setIsSidebarOpen} />
+
+          {/* SideBar */}
+
           {isSidebarOpen && <Sidebar bg={bg} setBg={setBg} isOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />}
+
           <View style={styles.timeContainer}>
-            <Timer bg={bg} step={step} value={key} timerDuration={timerDuration} pause={pause} handlePause={handlePause} />
+
+            {/* TimeContainer */}
+
+            <TimerContainer setChange={setChange} setRemainingTimeState={setRemainingTimeState} bg={bg} step={step} value={key} timerDuration={timerDuration} pause={pause} handlePause={handlePause} />
             <Text style={styles.text}>{message}</Text>
+
           </View>
+
           <View style={styles.changeContainer}>
-            <Count timeInSeconds={remainingTime} />
+
+            {/* Count */}
+
+            <Count remainingTimeState={remainingTimeState} />
+
+            {/* Buttons */}
+
             {(!pause && !start) && (
               <TouchableOpacity
                 style={styles.button}
@@ -166,16 +183,21 @@ export default function StartPage() {
                 <Text style={styles.buttonText}>Start</Text>
               </TouchableOpacity>
             )}
+
           </View>
         </>
       ) : (
         <>
-          <Success bg={bg} setNav={setNav} success={success} setSuccess={setSuccess} />
+          {/* Success */}
+          
+          <Success bg={bg} setNav={setNav} setSuccess={setSuccess} />
         </>
       )}
     </View>
   );
 }
+
+// Styles
 
 const styles = StyleSheet.create({
   container: {
