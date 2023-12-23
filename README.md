@@ -2,17 +2,26 @@
 
 #### Overview:
 ```
-This Pomodoro app is the culmination of my efforts in the Harvard CS50 course, serving as my final project. The app seamlessly combines functionality with a visually appealing design, offering users a unique and customizable Pomodoro experience.
+
+This Pomodoro app is the culmination of my efforts in the Harvard CS50 course,
+serving as my final project. The app seamlessly combines functionality with a
+visually appealing design, offering users a unique and customizable Pomodoro
+experience.
+
 ```
 
 #### Features:
 ```
-Audio Feedback: The app plays soothing audio alerts when a Pomodoro session is complete, prompting users to take breaks or transition to the next task.
+Audio Feedback: The app plays soothing audio alerts when a Pomodoro session
+is complete, prompting users to take breaks or transition to the next task.
+
 ```
 
 ##### Customizable Settings: 
 ```
-Users can personalize their Pomodoro experience by changing background colors and adjusting various settings according to their preferences.
+Users can personalize their Pomodoro experience by changing background colors
+and adjusting various settings according to their preferences.
+
 ```
 
 #### Demo Link:
@@ -36,8 +45,9 @@ exp://u.expo.dev/update/193fdbbe-fd37-4fdb-a762-65297e520696
 
 #### How to Use
 ```
-Open the Demo Link in your Expo app or scan the QR code using the Expo Go app.
-Explore the app's features and customize your Pomodoro sessions.
+Open the Demo Link in your Expo app or scan the QR code
+using the Expo Go app. Explore the app's features and
+customize your Pomodoro sessions.
 ```
 
 #### Technologies Used
@@ -48,8 +58,17 @@ JavaScript
 ```
 
 #### Contribution
-##### Feel free to contribute to the project by submitting issues or pull requests. Your feedback and ideas are highly appreciated!
+```
+
+Feel free to contribute to the project by submitting issues
+or pull requests. Your feedback and ideas are highly appreciated!
+
+```
 
 #### Acknowledgments
-##### Special thanks to Harvard CS50 and the open-source community for their invaluable resources and support during the development of this project.
+```
+Special thanks to Harvard CS50 and the open-source community
+for their invaluable resources and support during the development
+of this project.
+```
 
