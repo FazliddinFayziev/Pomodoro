@@ -43,6 +43,9 @@ exp://u.expo.dev/update/193fdbbe-fd37-4fdb-a762-65297e520696
 <img width="250" height="500" alt="image" src="https://github.com/FazliddinFayziev/Pomodoro/assets/119391181/2f7a4807-cdb9-4635-b076-1a678074cd97">
 <img width="250" height="500" alt="image" src="https://github.com/FazliddinFayziev/Pomodoro/assets/119391181/bedf3ebc-6c66-4320-bfb4-42a44324fac9">
 
+[![Watch the video](https://github.com/FazliddinFayziev/Pomodoro/assets/119391181/d1c8ef8e-ad55-47d8-be5a-38774382a1fc)](https://github.com/FazliddinFayziev/Pomodoro/assets/119391181/a5e506fe-1fca-4687-948d-4ccb1286e16c)
+
+
 #### How to Use
 ```
 Open the Demo Link in your Expo app or scan the QR code
